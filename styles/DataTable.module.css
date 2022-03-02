@@ -1,0 +1,41 @@
+.searchSection{
+    width: 100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 20px;
+   
+}
+.searchLabel{
+    width: 10%;
+    background-color: rgb(241, 244, 247);
+    padding: 7px 13px;
+    color: rgb(136, 142, 148);
+}
+.searchInput{
+    width:90%;
+    border: 1px solid rgb(219, 213, 213);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clearIcon{
+    cursor: pointer;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(231, 230, 228);
+
+}
+.searchInput input{
+    width:90%;
+    padding: 7px 3px 7px 3px;
+    border: none;
+    margin-left: 1px;
+}
+
+.searchInput input:focus{
+    outline: none;
+    /* border: 1px solid rgb(207, 202, 202); */
+}
