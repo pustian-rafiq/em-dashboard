@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 .searchSection{
     width: 100%;
     display: flex;
     justify-self: center;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0px 20px 0px;
    
 }
 .searchLabel{
@@ -11,6 +13,8 @@
     background-color: rgb(241, 244, 247);
     padding: 7px 13px;
     color: rgb(136, 142, 148);
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
 }
 .searchInput{
     width:90%;
@@ -29,13 +33,29 @@
 
 }
 .searchInput input{
-    width:90%;
+    width:95%;
     padding: 7px 3px 7px 3px;
     border: none;
     margin-left: 1px;
 }
-
+.searchInput input::placeholder{
+    font-size: 15px;
+}
 .searchInput input:focus{
     outline: none;
     /* border: 1px solid rgb(207, 202, 202); */
+}
+
+.tableBorder{
+    border: 1px solid rgb(199, 194, 194);
+}
+
+/* Responsive table */
+@media screen and (max-width: 800px){
+    .searchLabel{
+     display: none;
+    }
+    .searchInput{
+        width: 100%;
+    }
 }

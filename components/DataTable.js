@@ -1,63 +1,3 @@
-// import * as React from 'react';
-// import { DataGrid } from '@mui/x-data-grid';
-// import styles from '../styles/Home.module.css'
-// const columns = [
-//     { field: 'id', headerName: 'Serial', width: 70 },
-//     { field: 'firstName', headerName: 'First name', width: 130 },
-//     { field: 'lastName', headerName: 'Last name', width: 130 },
-//     { field: 'address', headerName: 'Address', width: 130 },
-//     { field: 'images', headerName: 'Images', width: 130 },
-//     {
-//         field: 'age',
-//         headerName: 'Age',
-//         type: 'number',
-//         width: 90,
-//     },
-//     {
-//         field: 'fullName',
-//         headerName: 'Full name',
-//         description: 'This column has a value getter and is not sortable.',
-//         sortable: false,
-//         width: 160,
-//         valueGetter: (params) =>
-//             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-//     },
-// ];
-
-// const rows = [
-//     { id: 1, lastName: 'Snow', firstName: 'Jon',  address: 'Jon', age: 35 },
-//     { id: 2, lastName: 'Lannister', firstName: 'Cersei', address: 'Jon', age: 42 },
-//     { id: 3, lastName: 'Lannister', firstName: 'Jaime', address: 'Jon', age: 45 },
-//     { id: 4, lastName: 'Stark', firstName: 'Arya', address: 'Jon', age: 16 },
-//     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys',address: 'Jon', age: null },
-//     { id: 6, lastName: 'Melisandre', firstName: null,address: 'Jon', age: 150 },
-//     { id: 7, lastName: 'Clifford', firstName: 'Ferrara',address: 'Jon', age: 44 },
-//     { id: 8, lastName: 'Frances', firstName: 'Rossini', address: 'Jon',age: 36 },
-//     { id: 9, lastName: 'Roxie', firstName: 'Harvey',address: 'Jon', age: 65 },
-//     { id: 10, lastName: 'Roxie', firstName: 'Harvey',address: 'Jon', age: 65 },
-//     { id: 11, lastName: 'Roxie', firstName: 'Harvey',address: 'Jon', age: 65 },
-//     { id: 12, lastName: 'Roxie', firstName: 'Harvey', address: 'Jon',age: 65 },
-//     { id: 13, lastName: 'Roxie', firstName: 'Harvey', address: 'Jon',age: 65 },
-//     { id: 14, lastName: 'Roxie', firstName: 'Harvey',address: 'Jon', age: 65 },
-//     { id: 15, lastName: 'Roxie', firstName: 'Harvey', address: 'Jon',age: 65 },
-// ];
-
-// export default function DataTable() {
-//     return (
-//         <div style={{   width: '100%',textAlign:'center' }}>
-
-//                 <DataGrid
-//                     rows={rows}
-//                     columns={columns}
-//                     pageSize={10}
-//                     rowsPerPageOptions={[5]}
-//                     autoHeight={true}
-//                 />
-
-
-//         </div>
-//     );
-// }
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -70,7 +10,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
- 
+
 import { visuallyHidden } from '@mui/utils';
 import styles from '../styles/DataTable.module.css'
 import ClearIcon from '@mui/icons-material/Clear';
@@ -136,7 +76,7 @@ const headCells = [
         id: 'name',
         numeric: false,
         disablePadding: true,
-        label: 'Dessert (100g serving)',
+        label: 'Dessert',
     },
     {
         id: 'calories',
@@ -148,31 +88,31 @@ const headCells = [
         id: 'fat',
         numeric: true,
         disablePadding: false,
-        label: 'Fat (g)',
+        label: 'Fat(g)',
     },
     {
         id: 'carbs',
         numeric: true,
         disablePadding: false,
-        label: 'Carbs (g)',
+        label: 'Carbs(g)',
     },
     {
         id: 'protein',
         numeric: true,
         disablePadding: false,
-        label: 'Protein (g)',
+        label: 'Protein(g)',
     },
 ];
 
 function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    const { order, orderBy, onRequestSort } =
         props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
 
     return (
-        <TableHead>
+        <TableHead  >
             <TableRow>
 
                 {headCells.map((headCell) => (
@@ -182,7 +122,8 @@ function EnhancedTableHead(props) {
                         align="left"
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
-                        style={{paddingLeft:'10px',background:'rgb(247, 247, 247)'}}
+                        style={{ paddingLeft: '10px', background: 'rgb(247, 247, 247)', background: 'rgb(235, 235, 235)' }}
+                        className={styles.tableBorder}
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
@@ -206,7 +147,6 @@ function EnhancedTableHead(props) {
 EnhancedTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.oneOf(['asc', 'desc']).isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
@@ -219,9 +159,9 @@ export default function EnhancedTable() {
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
+    const [selected] = React.useState([]);
     const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(false);
+    const [dense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleRequestSort = (event, property) => {
@@ -229,9 +169,9 @@ export default function EnhancedTable() {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-const searchTextHandler = ()=> {
-    setSearchText("")
-}
+    const searchTextHandler = () => {
+        setSearchText("")
+    }
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -242,77 +182,71 @@ const searchTextHandler = ()=> {
         setPage(0);
     };
 
-    const handleChangeDense = (event) => {
-        setDense(event.target.checked);
-    };
-
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
- //Show bank data and searches real time
- const tableDatas = rows.filter((search) => {
-    return (
-      search.name
-        .toLowerCase()
-        .includes(searchText.toLowerCase())  
-    //   search.calories.toLowerCase().includes(searchText.toLowerCase()) ||
-      //search.fat.toLowerCase().includes(searchText.toLowerCase())
-    );
-  });
-  const tableData =  stableSort(tableDatas, getComparator(order, orderBy))
-    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    .map((row, index) => {
-        const isItemSelected = isSelected(row.name);
-        const labelId = `enhanced-table-checkbox-${index}`;
-
+    //Show bank data and searches real time
+    const tableDatas = rows.filter((search) => {
         return (
-            <TableRow
-                hover
-                tabIndex={-1}
-                key={row.name}
-                selected={isItemSelected}
-                style={{background:'rgb(247, 247, 247)'}}
-            >
-
-                <TableCell
-                    component="th"
-                    id={labelId}
-                    scope="row"
-                    padding="2"
-                // style={{textAlign:'center'}}
-                >
-                    {row.name}
-                </TableCell>
-                <TableCell align="left">{row.calories}</TableCell>
-                <TableCell align="left">{row.fat}</TableCell>
-                <TableCell align="left">{row.carbs}</TableCell>
-                <TableCell align="left">{row.protein}</TableCell>
-            </TableRow>
+            search.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
+            //   search.calories.toLowerCase().includes(searchText.toLowerCase()) ||
+            //search.fat.toLowerCase().includes(searchText.toLowerCase())
         );
-    })
-  
+    });
+    const tableData = stableSort(tableDatas, getComparator(order, orderBy))
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .map((row, index) => {
+            const labelId = `enhanced-table-checkbox-${index}`;
+
+            return (
+                <TableRow
+                    hover
+                    tabIndex={-1}
+                    key={row.name}
+                    style={{ background: 'rgb(247, 247, 247)' }}
+                >
+                    <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        padding="2"
+                        className={styles.tableBorder}
+                    >
+                        {row.name}
+                    </TableCell>
+                    <TableCell className={styles.tableBorder} align="left">{row.calories}</TableCell>
+                    <TableCell className={styles.tableBorder} align="left">{row.fat}</TableCell>
+                    <TableCell className={styles.tableBorder} align="left">{row.carbs}</TableCell>
+                    <TableCell className={styles.tableBorder} align="left">{row.protein}</TableCell>
+                </TableRow>
+            );
+        })
+
 
     return (
-        <Box sx={{ width: '100%' }} style={{paddingRight:'5px'}} >
-            <Paper sx={{ width: '100%', mb: 2,mt:3}} style={{paddingRight:'5px', paddingLeft:'5px'}} >
-                <div style={{marginTop:'10px' }} className={styles.searchSection} >
+        <Box sx={{ width: '100%' }} style={{ paddingRight: '5px' }} >
+            <Paper sx={{ width: '100%', mb: 2, mt: 3 }} style={{ paddingRight: '15px', paddingLeft: '15px' }} >
+                <div style={{ marginTop: '10px' }} className={styles.searchSection} >
                     <div className={styles.searchLabel}>
-                        Search 
+                        Search
                     </div>
                     <div className={styles.searchInput}>
-                        <input type="text" placeholder='Search for name, address and others..' 
-                        onChange={(e)=> setSearchText(e.target.value)}
-                        value={searchText}
+                        <input type="text" placeholder='Search for name, address and others..'
+                            onChange={(e) => setSearchText(e.target.value)}
+                            value={searchText}
                         />
                         <ClearIcon className={styles.clearIcon} onClick={searchTextHandler} />
                     </div>
                 </div>
-                <TableContainer style={{   marginTop: '0px', background:'white' }} >
+                <TableContainer style={{ marginTop: '0px', background: 'white' }} >
                     <Table
                         sx={{ minWidth: 750 }}
                         aria-labelledby="tableTitle"
+                        className={styles.table}
                         size="small"
                     >
                         <EnhancedTableHead
@@ -322,14 +256,14 @@ const searchTextHandler = ()=> {
                             onRequestSort={handleRequestSort}
                             rowCount={rows.length}
                         />
-                        <TableBody >
-                            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
+                        <TableBody className={styles.table}>
+                            {/* Show tbale bodt data */}
                             {tableData}
+
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
+                                        height: (dense ? 93 : 53) * emptyRows,
                                     }}
                                 >
                                     <TableCell colSpan={6} />
@@ -339,7 +273,7 @@ const searchTextHandler = ()=> {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[10, 50, 100]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
